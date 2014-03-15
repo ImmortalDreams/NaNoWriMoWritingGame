@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>NaNoWriMo Writing Game</title>
+	<link rel="stylesheet" href="css.css">
+	<script src="js.js"></script>
+	<script src="jquery.js"></script>
+</head>
+<body>
+	<section id="wrapper">
+		<div id="console">
+			<canvas id="canvas" onmouseover="if (playButton.playing==1) {playButton.hovered=1; drawCanvasContent();}" onmouseout="if (playButton.playing==1) {playButton.hovered=0; drawCanvasContent();}" onclick="if (playButton.playing==0 && big_message=='') {gamePlay();} else {gamePause();} if(click_to_continue==true){big_message='';} if(click_to_exit==true){if(confirm('Would you like to exit without saving your writing to a safe place?')==true){big_message='You wrote 3,333 words and reached double the NaNoWriMo daily word goal! Way to go!!!'; window.location='index.html';}else{big_message='You wrote 3,333 words and reached double the NaNoWriMo daily word goal! Way to go!!!';}} drawCanvasContent();" width="800" height="400"></canvas>
+			<textarea id="textarea" onkeyup="if(document.getElementById('textarea').readOnly==false){updateText();}" onkeydown="if(document.getElementById('textarea').readOnly==false){stopped_typing=0; updateText();}" wrap="hard" rows="12" cols="96"></textarea>
+			<audio id="snd_bonus">
+				<source id="sound" src="sfx/snd_bonus.wav" type="audio/wav">
+			</audio>
+			<audio id="snd_enemy">
+				<source id="sound" src="sfx/snd_enemy.wav" type="audio/wav">
+			</audio>
+			<audio id="snd_lostbonus">
+				<source id="sound" src="sfx/snd_lostbonus.wav" type="audio/wav">
+			</audio>
+			<audio id="snd_winlevel">
+				<source id="sound" src="sfx/snd_winlevel.wav" type="audio/wav">
+			</audio>
+		</div>
+	</section>
+	
+	<section style="text-align:center;">
+		<button id="showHistoryButton" onclick="$('#showHistoryButton').hide(); $('#hideHistoryButton').show(); $('#historyDiv').fadeIn(500);">Show History</button>
+		<button id="hideHistoryButton" onclick="$('#hideHistoryButton').hide(); $('#showHistoryButton').show(); $('#historyDiv').fadeOut(500);" style="display:none;">Hide History</button>
+	
+		<div id="historyDiv" style="display:none">
+		</div>
+	</section>
+</body>
+</html>
